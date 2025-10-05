@@ -6,29 +6,27 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import os
 import random
 
-# -----------------------------
-# 1. Analyze Excel
-# -----------------------------
+
 def analyze_excel(file_path):
     try:
         df = pd.read_excel(file_path, sheet_name="SUMMARY TAB")
     except ValueError:
-        messagebox.showerror("Error", "❌ Sheet 'SUMMARY TAB' not found!")
+        messagebox.showerror("Error", "Sheet 'SUMMARY TAB' not found!")
         return
     except Exception as e:
         messagebox.showerror("Error", f"Failed to open file:\n{e}")
         return
 
     if 'Status' not in df.columns:
-        messagebox.showerror("Error", "❌ 'Status' column not found in 'SUMMARY TAB' sheet.")
+        messagebox.showerror("Error", " 'Status' column not found in 'SUMMARY TAB' sheet.")
         return
 
-    # Normalize and count
+  
     df['Status'] = df['Status'].astype(str).str.strip().str.upper()
     categories = ['PASS', 'FAIL', 'N/A', 'NOT TESTED']
     summary = df['Status'].value_counts().reindex(categories, fill_value=0)
 
-    # Save to CSV
+
     summary_df = summary.reset_index()
     summary_df.columns = ['Status', 'Count']
     output_file = os.path.join(os.getcwd(), "summary_output.csv")
@@ -36,9 +34,6 @@ def analyze_excel(file_path):
 
     show_summary_popup(file_path, summary_df, output_file)
 
-# -----------------------------
-# 2. Show Popup Window
-# -----------------------------
 def show_summary_popup(file_path, summary_df, output_file):
     popup = tk.Toplevel()
     popup.title("Test Summary Report")
@@ -47,11 +42,11 @@ def show_summary_popup(file_path, summary_df, output_file):
     tk.Label(popup, text=f"📊 Summary from: {os.path.basename(file_path)}", font=("Arial", 13, "bold")).pack(pady=10)
     tk.Label(popup, text=f"💾 Saved to: {output_file}", font=("Arial", 9), fg="gray").pack()
 
-    # Create frame for table + chart
+
     frame = tk.Frame(popup)
     frame.pack(pady=10, fill="both", expand=True)
 
-    # --- Summary Table ---
+    
     table_frame = tk.Frame(frame)
     table_frame.pack(side="left", padx=20, pady=20)
 
@@ -67,15 +62,15 @@ def show_summary_popup(file_path, summary_df, output_file):
         tree.insert("", "end", values=(row["Status"], row["Count"]))
     tree.pack()
 
-    # --- Chart ---
+    
     fig, axes = plt.subplots(1, 2, figsize=(6, 3))
     fig.tight_layout(pad=3)
 
-    # Pie Chart
+   
     axes[0].pie(summary_df["Count"], labels=summary_df["Status"], autopct="%1.1f%%", startangle=90)
     axes[0].set_title("Pie Chart")
 
-    # Bar Chart
+    
     axes[1].bar(summary_df["Status"], summary_df["Count"])
     axes[1].set_title("Bar Chart")
     axes[1].set_ylabel("Count")
@@ -86,9 +81,7 @@ def show_summary_popup(file_path, summary_df, output_file):
 
     tk.Button(popup, text="Close", command=popup.destroy, font=("Arial", 10)).pack(pady=10)
 
-# -----------------------------
-# 3. File Dialog
-# -----------------------------
+
 def open_file():
     file_path = filedialog.askopenfilename(
         title="Select Excel File",
@@ -97,9 +90,7 @@ def open_file():
     if file_path:
         analyze_excel(file_path)
 
-# -----------------------------
-# 4. Mock Excel Generator
-# -----------------------------
+
 def create_mock_excel():
     statuses = ['PASS', 'FAIL', 'N/A', 'NOT TESTED']
     data = {
@@ -112,11 +103,9 @@ def create_mock_excel():
         df.to_excel(writer, sheet_name="SUMMARY TAB", index=False)
         pd.DataFrame({"Note": ["Generated for testing"]}).to_excel(writer, sheet_name="INFO", index=False)
 
-    messagebox.showinfo("Mock Created", f"✅ Mock Excel created:\n{file_path}")
+    messagebox.showinfo("Mock Created", f" Mock Excel created:\n{file_path}")
 
-# -----------------------------
-# 5. Drag & Drop Handler
-# -----------------------------
+
 def drop_event(event):
     file_path = event.data.strip("{}")
     if os.path.isfile(file_path) and file_path.endswith(('.xlsx', '.xls')):
@@ -124,23 +113,21 @@ def drop_event(event):
     else:
         messagebox.showerror("Invalid File", "Please drop a valid Excel file (.xlsx or .xls)")
 
-# -----------------------------
-# 6. GUI Setup
-# -----------------------------
+
 try:
     from tkinterdnd2 import DND_FILES, TkinterDnD
     root = TkinterDnD.Tk()
 except ImportError:
     root = tk.Tk()
-    messagebox.showwarning("Missing Library", "⚠️ Drag & drop feature needs 'tkinterdnd2'\nInstall via:\n\npip install tkinterdnd2")
+    messagebox.showwarning("Missing Library", "Drag & drop feature needs 'tkinterdnd2'\nInstall via:\n\npip install tkinterdnd2")
 
 root.title("Excel Summary Analyzer")
 root.geometry("460x400")
 
-label = tk.Label(root, text="📂 Drag & Drop Excel file below\nor click 'Select Excel File'", font=("Arial", 12))
+label = tk.Label(root, text="Drag & Drop Excel file below\nor click 'Select Excel File'", font=("Arial", 12))
 label.pack(pady=15)
 
-drop_frame = tk.Label(root, text="⬇️ Drop Excel File Here ⬇️", font=("Arial", 11),
+drop_frame = tk.Label(root, text="Drop Excel File Here", font=("Arial", 11),
                       bg="#e3e3e3", relief="ridge", width=40, height=4)
 drop_frame.pack(pady=5)
 if isinstance(root, type(tk.Tk())):

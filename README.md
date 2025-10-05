@@ -6,15 +6,15 @@ A simple yet powerful Python desktop tool that allows you to **drag and drop Exc
 
 ## 🚀 Features
 
-- 🖱️ **Drag & Drop Excel Input** – Easily select or drop your Excel file.
-- 📑 **Automatic Summary Detection** – Reads data from the “SUMMARY” worksheet.
-- 📈 **Instant Visual Charts** – Displays a pie chart of Pass/Fail/N.A/Not Tested results.
-- 🪟 **Pop-out Summary Window** – Shows test count and percentage summary.
-- 🧪 **Mock Excel Generator** – Quickly generate a sample Excel file for testing.
+- **Drag & Drop Excel Input** – Easily select or drop your Excel file.
+- **Automatic Summary Detection** – Reads data from the “SUMMARY” worksheet.
+- **Instant Visual Charts** – Displays a pie chart of Pass/Fail/N.A/Not Tested results.
+- **Pop-out Summary Window** – Shows test count and percentage summary.
+- **Mock Excel Generator** – Quickly generate a sample Excel file for testing.
 
 ---
 
-## 🛠️ Installation
+## Installation
 
 1. **Clone this repository**
    ```bash
@@ -25,7 +25,6 @@ A simple yet powerful Python desktop tool that allows you to **drag and drop Exc
 2. **Create a virtual environment (optional but recommended)**
    ```bash
    python -m venv venv
-   source venv/bin/activate     # (Mac/Linux)
    venv\Scripts\activate        # (Windows)
    ```
 
@@ -54,7 +53,7 @@ excel-summary-analyser/
 
 ---
 
-## ▶️ Usage
+## Usage
 
 1. **Run the application**
    ```bash
@@ -72,21 +71,13 @@ excel-summary-analyser/
 
 ---
 
-## 🧩 Mock Excel Generator
+## Mock Excel Generator
 
-Click the **“Create Mock Excel”** button to generate a sample Excel file with random PASS/FAIL/N.A/NOT TESTED data — great for demo or testing.
-
----
-
-## 📸 Screenshots
-
-| Summary Window | Chart Example |
-|----------------|----------------|
-| *(coming soon)* | *(coming soon)* |
+Click the **“Create Mock Excel”** button to generate a sample Excel file with random PASS/FAIL/N.A/NOT TESTED data for demo
 
 ---
 
-## 🧠 Requirements
+## Requirements
 
 - Python 3.9+
 - pandas
@@ -96,30 +87,11 @@ Click the **“Create Mock Excel”** button to generate a sample Excel file wit
 
 ---
 
-## 💡 Future Improvements
 
-- Support for multiple sheets
-- Save result summary as PDF or CSV
-- Theming (dark/light mode)
-- Error handling improvements
-
----
-
-## 👨‍💻 Author
+## Author
 
 **Fazni Alif Asyraf**  
 TV Software Tester | Python Developer  
-📍 Sony TV R&D (Malaysia)
+Sony TV R&D (Malaysia)
 
 ---
-
-## 🪪 License
-
-This project is licensed under the **MIT License** – feel free to use and modify it.
-
----
-
-## ⭐ Contribute
-
-Pull requests and suggestions are welcome!  
-If you like this project, please give it a ⭐ on GitHub — it helps a lot!
